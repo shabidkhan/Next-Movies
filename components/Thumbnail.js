@@ -2,10 +2,10 @@ import { ThumbUpIcon } from "@heroicons/react/outline"
 import Image from "next/image"
 import {forwardRef} from "react"
 
-const Thumbnail = ({movie}) => {
+const Thumbnail = forwardRef(({movie},ref) => {
     const baseUrl ="https://image.tmdb.org/t/p/original"
     return (
-        <div  className="p-2 group cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50">
+        <div ref={ref} className="p-2 group cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50">
             <Image
                 src={`${baseUrl}${movie.backdrop_path || movie.poster_path}`}
                 layout="responsive"
@@ -24,6 +24,8 @@ const Thumbnail = ({movie}) => {
             </div>
         </div>   
     );
-}
+});
+
+Thumbnail.displayName = "Thumbnail";
 
 export default Thumbnail; 
